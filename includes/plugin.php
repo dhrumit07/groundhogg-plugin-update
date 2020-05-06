@@ -5,6 +5,7 @@ namespace GroundhoggBetaUpdates;
 use Groundhogg\Admin\Admin_Menu;
 use Groundhogg\DB\Manager;
 use Groundhogg\Extension;
+use function Groundhogg\is_option_enabled;
 
 class Plugin extends Extension {
 
@@ -32,7 +33,31 @@ class Plugin extends Extension {
 	 */
 	public function init_components() {
 		$this->installer = new Installer();
-		$this->updater   = new Update_Groundhogg();
+
+		if ( is_option_enabled( 'gh_get_beta_versions_updates' ) ) {
+
+			$this->updater = new Update_Groundhogg();
+		}
+	}
+
+	public function register_settings( $settings ) {
+
+		$settings['gh_get_beta_versions_updates'] = array(
+			'id'      => 'gh_get_beta_versions_updates',
+			'section' => 'misc_info',
+			'label'   => _x( 'Get updates for pre-release versions of Gorundhogg core', 'settings', 'groundhogg-update' ),
+			'desc'    => _x( 'This will enable automatic updates for beta versions of the Groundhogg core plugin.', 'settings', 'groundhogg-update' ),
+			'type'    => 'checkbox',
+			'atts'    => array(
+				'label' => __( 'Enable' ),
+				//keep brackets for backwards compat
+				'name'  => 'gh_get_beta_versions_updates',
+				'id'    => 'gh_get_beta_versions_updates',
+				'value' => 'on',
+			),
+		);
+
+		return $settings;
 	}
 
 	/**
@@ -41,7 +66,7 @@ class Plugin extends Extension {
 	 * @return int
 	 */
 	public function get_download_id() {
-		// TODO: Implement get_download_id() method.
+		return 48348;
 	}
 
 	/**

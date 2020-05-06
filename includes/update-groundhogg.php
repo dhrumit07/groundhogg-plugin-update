@@ -28,11 +28,12 @@ class Update_Groundhogg {
 	// Get information regarding our plugin from WordPress
 	private function initPluginData() {
 
-		if ( ! file_exists( $this->pluginFile ) ){
+		$this->slug = plugin_basename( $this->pluginFile );
+
+		if ( ! file_exists( $this->pluginFile ) ) {
 			return;
 		}
 
-		$this->slug       = plugin_basename( $this->pluginFile );
 		$this->pluginData = get_plugin_data( $this->pluginFile );
 	}
 
@@ -161,8 +162,17 @@ class Update_Groundhogg {
 
 	// Perform additional actions to successfully install our plugin
 	public function postInstall( $true, $hook_extra, $result ) {
-		// Get plugin information
+
+		// Check if updating Groundhogg, otherwise exit out...
 		$this->initPluginData();
+
+		$plugin = $hook_extra[ 'plugin' ];
+		$slug   = plugin_basename( $plugin );
+
+		// Not core Groundhogg...
+		if ( $slug != $this->slug ){
+			return $true;
+		}
 
 		// Remember if our plugin was previously activated
 		$wasActivated = is_plugin_active( $this->slug );
@@ -175,10 +185,10 @@ class Update_Groundhogg {
 		$result['destination'] = $pluginFolder;
 
 		// Re-activate plugin if needed
-		if ( $wasActivated ) {
+		if ( ! $wasActivated ) {
 			$activate = activate_plugin( $this->slug );
 		}
 
-		return $result;
+		return $true;
 	}
 }

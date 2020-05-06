@@ -35,7 +35,6 @@ class Plugin extends Extension {
 		$this->installer = new Installer();
 
 		if ( is_option_enabled( 'gh_get_beta_versions_updates' ) ) {
-
 			$this->updater = new Update_Groundhogg();
 		}
 	}

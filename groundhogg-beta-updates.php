@@ -3,7 +3,7 @@
  * Plugin Name: Groundhogg - Beta Updates
  * Plugin URI: https://www.groundhogg.io/downloads/beta-updates/?utm_source=wp-plugins&utm_campaign=plugin-uri&utm_medium=wp-dash
  * Description: Get automatic updates for beta versions of the Groundhogg core plugin.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Groundhogg Inc.
  * Author URI: https://www.groundhogg.io/?utm_source=wp-plugins&utm_campaign=author-uri&utm_medium=wp-dash
  * Text Domain: groundhogg
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GROUNDHOGG_BETA_UPDATES_VERSION', '1.0' );
+define( 'GROUNDHOGG_BETA_UPDATES_VERSION', '1.0.1' );
 define( 'GROUNDHOGG_BETA_UPDATES_PREVIOUS_STABLE_VERSION', '0.1' );
 define( 'GROUNDHOGG_BETA_UPDATES_NAME', 'Plugin Update' );
 

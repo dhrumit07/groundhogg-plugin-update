@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: Groundhogg - Plugin Update
+ * Plugin Name: Groundhogg - Beta Updates
  * Plugin URI:  https://www.groundhogg.io/?utm_source=wp-plugins&utm_campaign=plugin-uri&utm_medium=wp-dash
- * Description: Help to update Groundhogg plugin.
+ * Description: Get automatic updates for beta versions of the Groundhogg core plugin.
  * Version: 1.0
  * Author: Groundhogg Inc.
  * Author URI: https://www.groundhogg.io/?utm_source=wp-plugins&utm_campaign=author-uri&utm_medium=wp-dash
@@ -19,34 +19,34 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  */
-namespace GroundhoggUpdate;
+namespace GroundhoggBetaUpdates;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GROUNDHOGG_PLUGIN_UPDATE_VERSION', '1.0' );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_PREVIOUS_STABLE_VERSION', '0.1' );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_NAME', 'Plugin Update' );
+define( 'GROUNDHOGG_BETA_UPDATES_VERSION', '1.0' );
+define( 'GROUNDHOGG_BETA_UPDATES_PREVIOUS_STABLE_VERSION', '0.1' );
+define( 'GROUNDHOGG_BETA_UPDATES_NAME', 'Plugin Update' );
 
-define( 'GROUNDHOGG_PLUGIN_UPDATE__FILE__', __FILE__ );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_PLUGIN_BASE', plugin_basename( GROUNDHOGG_PLUGIN_UPDATE__FILE__ ) );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_PATH', plugin_dir_path( GROUNDHOGG_PLUGIN_UPDATE__FILE__ ) );
+define( 'GROUNDHOGG_BETA_UPDATES__FILE__', __FILE__ );
+define( 'GROUNDHOGG_BETA_UPDATES_PLUGIN_BASE', plugin_basename( GROUNDHOGG_BETA_UPDATES__FILE__ ) );
+define( 'GROUNDHOGG_BETA_UPDATES_PATH', plugin_dir_path( GROUNDHOGG_BETA_UPDATES__FILE__ ) );
 
-define( 'GROUNDHOGG_PLUGIN_UPDATE_URL', plugins_url( '/', GROUNDHOGG_PLUGIN_UPDATE__FILE__ ) );
+define( 'GROUNDHOGG_BETA_UPDATES_URL', plugins_url( '/', GROUNDHOGG_BETA_UPDATES__FILE__ ) );
 
-define( 'GROUNDHOGG_PLUGIN_UPDATE_ASSETS_PATH', GROUNDHOGG_PLUGIN_UPDATE_PATH . 'assets/' );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_ASSETS_URL', GROUNDHOGG_PLUGIN_UPDATE_URL . 'assets/' );
+define( 'GROUNDHOGG_BETA_UPDATES_ASSETS_PATH', GROUNDHOGG_BETA_UPDATES_PATH . 'assets/' );
+define( 'GROUNDHOGG_BETA_UPDATES_ASSETS_URL', GROUNDHOGG_BETA_UPDATES_URL . 'assets/' );
 
-define( 'GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_WP_VERSION', '4.9' );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_PHP_VERSION', '7.0' );
-define( 'GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_CORE_VERSION', '2.1.14' );
+define( 'GROUNDHOGG_BETA_UPDATES_REQUIRED_WP_VERSION', '4.9' );
+define( 'GROUNDHOGG_BETA_UPDATES_REQUIRED_PHP_VERSION', '7.0' );
+define( 'GROUNDHOGG_BETA_UPDATES_REQUIRED_CORE_VERSION', '2.1.14' );
 
 add_action( 'plugins_loaded', function () {
-	load_plugin_textdomain( GROUNDHOGG_PLUGIN_UPDATE_TEXT_DOMAIN, false, basename( dirname( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( GROUNDHOGG_BETA_UPDATES_TEXT_DOMAIN, false, basename( dirname( __FILE__ ) ) . '/languages' );
 } );
 
-define( 'GROUNDHOGG_PLUGIN_UPDATE_TEXT_DOMAIN', 'groundhogg-update' );
+define( 'GROUNDHOGG_BETA_UPDATES_TEXT_DOMAIN', 'groundhogg-update' );
 
 // Check PHP and WP are up to date!
 if ( check_wp_version() && check_php_version() ){
@@ -79,11 +79,11 @@ if ( check_wp_version() && check_php_version() ){
  */
 function check_core_version() {
 
-	$correct_version = version_compare( GROUNDHOGG_VERSION, GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_CORE_VERSION, '>=' );
+	$correct_version = version_compare( GROUNDHOGG_VERSION, GROUNDHOGG_BETA_UPDATES_REQUIRED_CORE_VERSION, '>=' );
 
 	if ( ! $correct_version ) {
 		add_action( 'admin_notices', function () {
-			$message      = sprintf( esc_html__( '%s requires Groundhogg version %s+. Because you are using an earlier version, the plugin is currently NOT RUNNING.', 'groundhogg' ), GROUNDHOGG_PLUGIN_UPDATE_NAME, GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_CORE_VERSION );
+			$message      = sprintf( esc_html__( '%s requires Groundhogg version %s+. Because you are using an earlier version, the plugin is currently NOT RUNNING.', 'groundhogg' ), GROUNDHOGG_BETA_UPDATES_NAME, GROUNDHOGG_BETA_UPDATES_REQUIRED_CORE_VERSION );
 			$html_message = sprintf( '<div class="notice notice-error">%s</div>', wpautop( $message ) );
 			echo wp_kses_post( $html_message );
 		} );
@@ -99,11 +99,11 @@ function check_core_version() {
  */
 function check_wp_version() {
 
-	$correct_version = version_compare( get_bloginfo( 'version' ), GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_WP_VERSION, '>=' );
+	$correct_version = version_compare( get_bloginfo( 'version' ), GROUNDHOGG_BETA_UPDATES_REQUIRED_WP_VERSION, '>=' );
 
 	if ( ! $correct_version ) {
 		add_action( 'admin_notices', function () {
-			$message      = sprintf( esc_html__( '%s requires WordPress version %s+. Because you are using an earlier version, the plugin is currently NOT RUNNING.', 'groundhogg' ), GROUNDHOGG_PLUGIN_UPDATE_NAME, GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_WP_VERSION );
+			$message      = sprintf( esc_html__( '%s requires WordPress version %s+. Because you are using an earlier version, the plugin is currently NOT RUNNING.', 'groundhogg' ), GROUNDHOGG_BETA_UPDATES_NAME, GROUNDHOGG_BETA_UPDATES_REQUIRED_WP_VERSION );
 			$html_message = sprintf( '<div class="notice notice-error">%s</div>', wpautop( $message ) );
 			echo wp_kses_post( $html_message );
 		} );
@@ -119,11 +119,11 @@ function check_wp_version() {
  */
 function check_php_version() {
 
-	$correct_version = version_compare( PHP_VERSION, GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_PHP_VERSION, '>=' );
+	$correct_version = version_compare( PHP_VERSION, GROUNDHOGG_BETA_UPDATES_REQUIRED_PHP_VERSION, '>=' );
 
 	if ( ! $correct_version ) {
 		add_action( 'admin_notices', function () {
-			$message      = sprintf( esc_html__( '%s requires PHP version %s+, plugin is currently NOT RUNNING.', 'groundhogg' ), GROUNDHOGG_PLUGIN_UPDATE_NAME, GROUNDHOGG_PLUGIN_UPDATE_REQUIRED_PHP_VERSION );
+			$message      = sprintf( esc_html__( '%s requires PHP version %s+, plugin is currently NOT RUNNING.', 'groundhogg' ), GROUNDHOGG_BETA_UPDATES_NAME, GROUNDHOGG_BETA_UPDATES_REQUIRED_PHP_VERSION );
 			$html_message = sprintf( '<div class="notice notice-error">%s</div>', wpautop( $message ) );
 			echo wp_kses_post( $html_message );
 		} );
@@ -141,7 +141,7 @@ function check_groundhogg_active() {
 
 		// Is not loaded!
 		if ( ! defined( 'GROUNDHOGG_VERSION' ) ) {
-			$message      = sprintf( esc_html__( 'Groundhogg is not currently active, it must be active for %s to work.', 'groundhogg' ), GROUNDHOGG_PLUGIN_UPDATE_NAME );
+			$message      = sprintf( esc_html__( 'Groundhogg is not currently active, it must be active for %s to work.', 'groundhogg' ), GROUNDHOGG_BETA_UPDATES_NAME );
 			$html_message = sprintf( '<div class="notice notice-warning">%s</div>', wpautop( $message ) );
 			echo wp_kses_post( $html_message );
 		}

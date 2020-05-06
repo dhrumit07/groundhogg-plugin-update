@@ -15,7 +15,7 @@ class Update_Groundhogg {
 	private $accessToken; // GitHub private repo token
 
 	function __construct() {
-		add_filter( "pre_set_site_transient_update_plugins", array( $this, "setTransitent" ) );
+		add_filter( "pre_set_site_transient_update_plugins", array( $this, "setTransient" ) );
 		add_filter( "plugins_api", array( $this, "setPluginInfo" ), 10, 3 );
 		add_filter( "upgrader_post_install", array( $this, "postInstall" ), 10, 3 );
 
@@ -71,7 +71,7 @@ class Update_Groundhogg {
 	}
 
 	// Push in plugin version information to get the update notification
-	public function setTransitent( $transient ) {
+	public function setTransient( $transient ) {
 		// If we have checked the plugin data before, don't re-check
 		if ( empty( $transient->checked ) ) {
 			return $transient;
@@ -148,7 +148,7 @@ class Update_Groundhogg {
 		// Create tabs in the lightbox
 		$response->sections = array(
 			'description' => $this->pluginData["Description"],
-			'changelog'   => "Please visit Groundhogg Change log . <a href = 'https://www.groundhogg.io' > Groundhogg </a>"
+			'changelog'   => ''
 		);
 
 		return $response;

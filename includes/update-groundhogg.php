@@ -1,6 +1,6 @@
 <?php
 
-namespace GroundhoggUpdate;
+namespace GroundhoggBetaUpdates;
 
 use stdClass;
 

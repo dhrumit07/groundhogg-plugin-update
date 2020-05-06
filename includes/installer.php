@@ -1,5 +1,5 @@
 <?php
-namespace GroundhoggUpdate;
+namespace GroundhoggBetaUpdates;
 
 use function Groundhogg\words_to_key;
 
@@ -23,7 +23,7 @@ class Installer extends \Groundhogg\Installer
      */
     function get_plugin_file()
     {
-        return GROUNDHOGG_PLUGIN_UPDATE__FILE__;
+        return GROUNDHOGG_BETA_UPDATES__FILE__;
     }
 
     /**
@@ -33,7 +33,7 @@ class Installer extends \Groundhogg\Installer
      */
     function get_plugin_version()
     {
-        return GROUNDHOGG_PLUGIN_UPDATE_VERSION;
+        return GROUNDHOGG_BETA_UPDATES_VERSION;
     }
 
     /**
@@ -43,6 +43,6 @@ class Installer extends \Groundhogg\Installer
      */
     protected function get_installer_name()
     {
-        return words_to_key( GROUNDHOGG_PLUGIN_UPDATE_NAME );
+        return words_to_key( GROUNDHOGG_BETA_UPDATES_NAME );
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace GroundhoggUpdate;
+namespace GroundhoggBetaUpdates;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -48,7 +48,7 @@ class Autoloader {
 	 */
 	private static function load_class( $relative_class_name ) {
 		if ( isset( self::$classes_map[ $relative_class_name ] ) ) {
-			$filename = GROUNDHOGG_PLUGIN_UPDATE_PATH . '/' . self::$classes_map[ $relative_class_name ];
+			$filename = GROUNDHOGG_BETA_UPDATES_PATH . '/' . self::$classes_map[ $relative_class_name ];
 		} else {
 			$filename = strtolower(
 				preg_replace(
@@ -58,10 +58,10 @@ class Autoloader {
 				)
 			);
 
-			$is_filename = GROUNDHOGG_PLUGIN_UPDATE_PATH . $filename . '.php';
+			$is_filename = GROUNDHOGG_BETA_UPDATES_PATH . $filename . '.php';
 
 			if ( ! file_exists( $is_filename ) ){
-			    $filename = wp_normalize_path( GROUNDHOGG_PLUGIN_UPDATE_PATH . 'includes/' . $filename . '.php' );
+			    $filename = wp_normalize_path( GROUNDHOGG_BETA_UPDATES_PATH . 'includes/' . $filename . '.php' );
             } else {
 			    $filename = $is_filename;
             }

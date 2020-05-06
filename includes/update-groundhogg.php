@@ -27,6 +27,11 @@ class Update_Groundhogg {
 
 	// Get information regarding our plugin from WordPress
 	private function initPluginData() {
+
+		if ( ! file_exists( $this->pluginFile ) ){
+			return;
+		}
+
 		$this->slug       = plugin_basename( $this->pluginFile );
 		$this->pluginData = get_plugin_data( $this->pluginFile );
 	}
@@ -148,7 +153,7 @@ class Update_Groundhogg {
 		// Create tabs in the lightbox
 		$response->sections = array(
 			'description' => $this->pluginData["Description"],
-			'changelog'   => ''
+			'changelog'   => 'For the most recent updates please see our <a href="https://github.com/tobeyadr/Groundhogg">GitHub repo listing</a>.',
 		);
 
 		return $response;

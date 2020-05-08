@@ -44,7 +44,7 @@ class Plugin extends Extension {
 		$settings['gh_get_beta_versions_updates'] = array(
 			'id'      => 'gh_get_beta_versions_updates',
 			'section' => 'misc_info',
-			'label'   => _x( 'Get updates for pre-release versions of Gorundhogg core', 'settings', 'groundhogg-update' ),
+			'label'   => _x( 'Get updates for pre-release versions of Groundhogg core', 'settings', 'groundhogg-update' ),
 			'desc'    => _x( 'This will enable automatic updates for beta versions of the Groundhogg core plugin.', 'settings', 'groundhogg-update' ),
 			'type'    => 'checkbox',
 			'atts'    => array(
